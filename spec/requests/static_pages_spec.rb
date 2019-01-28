@@ -32,60 +32,65 @@ describe "StaticPages" do
 
   let(:base_title){"Ruby on Rails Tutorial Sample App"}
 
-  pages = ["Home", "Help", "About", "Contact"]
-  pages.each { |name| page_test(name) }
+  # pages = ["Home", "Help", "About", "Contact"]
+  # pages.each { |name| page_test(name) }
 
-  # describe "Home page" do
-  #
-  #   it "should have the content 'Sample App'" do
-  #     visit '/static_pages/home'
-  #     expect(page).to have_content('Sample App')
-  #   end
-  #
-  #   it "should have the right title" do
-  #     visit '/static_pages/home'
-  #     expect(page).to have_title("Ruby on Rails Tutorial Sample App | Home")
-  #   end
-  # end
-  #
-  # describe "Help page" do
-  #
-  #   it "should have the content 'Help'" do
-  #     visit '/static_pages/help'
-  #     expect(page).to have_content('Help')
-  #   end
-  #
-  #   it "should have the right title" do
-  #     visit '/static_pages/help'
-  #     expect(page).to have_title("Ruby on Rails Tutorial Sample App | Help")
-  #   end
-  # end
-  #
-  # describe "About page" do
-  #
-  #   it "should have the content 'About Us'" do
-  #     visit '/static_pages/about'
-  #     expect(page).to have_content('About Us')
-  #   end
-  #
-  #   it "should have the right title" do
-  #     visit '/static_pages/about'
-  #     expect(page).to have_title("Ruby on Rails Tutorial Sample App | About")
-  #   end
-  # end
-  #
-  # describe "Contact page" do
-  #
-  #   it "should have the content 'Contacts'" do
-  #     visit '/static_pages/contact'
-  #     expect(page).to have_content('Contacts')
-  #   end
-  #
-  #   it "should have the right title" do
-  #     visit '/static_pages/contact'
-  #     expect(page).to have_title("Ruby on Rails Tutorial Sample App | Contacts")
-  #   end
-  # end
+  describe "Home page" do
+
+    it "should have the content 'Sample App'" do
+      visit '/static_pages/home'
+      expect(page).to have_content('Sample App')
+    end
+
+    it "should have the right title" do
+      visit '/static_pages/home'
+      expect(page).to have_title("#{base_title}")
+    end
+
+    it "should not have a custom page title" do
+      visit '/static_pages/home'
+      expect(page).not_to have_title('| Home')
+    end
+  end
+
+  describe "Help page" do
+
+    it "should have the content 'Help'" do
+      visit '/static_pages/help'
+      expect(page).to have_content('Help')
+    end
+
+    it "should have the right title" do
+      visit '/static_pages/help'
+      expect(page).to have_title("#{base_title} | Help")
+    end
+  end
+
+  describe "About page" do
+
+    it "should have the content 'About Us'" do
+      visit '/static_pages/about'
+      expect(page).to have_content('About Us')
+    end
+
+    it "should have the right title" do
+      visit '/static_pages/about'
+      expect(page).to have_title("#{base_title} | About")
+    end
+  end
+
+  describe "Contact page" do
+
+    it "should have the content 'Contacts'" do
+      visit '/static_pages/contact'
+      expect(page).to have_content('Contacts')
+    end
+
+    it "should have the right title" do
+      visit '/static_pages/contact'
+      expect(page).to have_title("#{base_title} | Contacts")
+    end
+  end
 
   # default tests
   # describe "GET /static_pages" do
