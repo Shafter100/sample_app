@@ -4,4 +4,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
 
   before_save{ self.email = email.downcase }
+
+  has_secure_password # it allows blank passwords, so there is additional validation below
+  validates :password, presence: true unless :password.blank?
 end
