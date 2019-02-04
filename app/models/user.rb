@@ -6,5 +6,5 @@ class User < ActiveRecord::Base
   before_save{ self.email = email.downcase }
 
   has_secure_password # it allows blank passwords, so there is additional validation below
-  validates :password, presence: true unless :password.blank?
+  validates :password, length: {minimum: 6}, presence: true unless :password.blank?
 end
