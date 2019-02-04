@@ -8,6 +8,7 @@ gem 'rails', '4.2.8'
 
 gem 'bootstrap-sass', '3.2.0.0'
 gem 'sprockets', '2.12.5'
+gem 'bcrypt-ruby', '3.1.2'
 
 gem 'pg', '0.15.1'
 group :development, :test do
