@@ -67,6 +67,9 @@ GEM
     execjs (2.7.0)
     factory_bot (4.8.2)
       activesupport (>= 3.0.0)
+    factory_bot_rails (4.8.2)
+      factory_bot (~> 4.8.2)
+      railties (>= 3.0.0)
     ffi (1.10.0)
     formatador (0.2.5)
     globalid (0.4.2)
@@ -248,7 +251,7 @@ DEPENDENCIES
   byebug
   capybara (= 2.1.0)
   coffee-rails (= 4.0.1)
-  factory_bot (= 4.8.2)
+  factory_bot_rails (= 4.8.2)
   guard (~> 2.0)
   guard-rspec (= 4.0.0)
   guard-spork
