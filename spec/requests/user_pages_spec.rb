@@ -33,16 +33,16 @@ describe "UserPages" do
         expect { click_button submit }.to change(User, :count).by(1)
       end
     end
-
-
-    describe "profile page" do
-      let(:user) { FactoryBot.create(:user) }
-      before { visit user_path(user) }
-
-      it { should have_content(user.name) }
-      it { should have_title(user.name) }
-    end    
   end
+
+  describe "profile page" do
+    let(:user) { FactoryBot.create(:user) }
+    before { visit user_path(user) }
+
+    it { should have_content(user.name) }
+    it { should have_title(user.name) }
+  end
+
 
 
 #   describe "GET /user_pages" do
