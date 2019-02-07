@@ -25,6 +25,8 @@ group :test do
   gem 'selenium-webdriver', '2.35.1'
   gem 'capybara', '2.1.0'
   gem 'test-unit'
+
+  gem 'factory_bot_rails', '4.8.2'
 end
 
 # Use SCSS for stylesheets

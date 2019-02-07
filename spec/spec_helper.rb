@@ -31,6 +31,9 @@ Spork.prefork do
     # config.mock_with :flexmock
     # config.mock_with :rr
 
+    # Pass deprecations to a file
+    config.deprecation_stream = 'deprecations.txt'
+
     config.include Capybara::DSL
 
     # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
