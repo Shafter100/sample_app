@@ -27,6 +27,9 @@ group :test do
   gem 'test-unit'
 
   gem 'factory_bot_rails', '4.8.2'
+
+  gem 'cucumber-rails', '1.4.3', :require => false
+  gem 'database_cleaner', '1.5.1'
 end
 
 # Use SCSS for stylesheets
