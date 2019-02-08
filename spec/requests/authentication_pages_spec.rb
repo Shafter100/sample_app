@@ -16,11 +16,8 @@ describe "Authentication" do
 
     describe "with valid information" do
       let(:user) { FactoryBot.create(:user) }
-      before do
-        fill_in "Email",    with: user.email.upcase # test for case-insensitivity
-        fill_in "Password", with: user.password
-        click_button "Sign in"
-      end
+      valid_signin
+      before { valid_signin(user) }
 
       it { should have_title(user.name) }
       it { should have_link('Profile', href: user_path(user)) }
