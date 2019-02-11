@@ -16,7 +16,6 @@ describe "Authentication" do
 
     describe "with valid information" do
       let(:user) { FactoryBot.create(:user) }
-      valid_signin
       before { valid_signin(user) }
 
       it { should have_title(user.name) }
