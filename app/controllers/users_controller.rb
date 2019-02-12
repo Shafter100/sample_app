@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page])
   end
 
   def new
@@ -52,7 +52,6 @@ class UsersController < ApplicationController
         flash[:warning] = "Please sign in."
         redirect_to signin_url
       end
-      #redirect_to signin_url, notice: "Please sign in." unless signed_in?  # notice is not styled!!!!!!!!!!!!!!
     end
 
     def correct_user
