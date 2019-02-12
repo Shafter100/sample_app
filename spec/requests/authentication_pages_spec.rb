@@ -16,7 +16,7 @@ describe "Authentication" do
 
     describe "with valid information" do
       let(:user) { FactoryBot.create(:user) }
-      before { valid_signin(user) }
+      before { sign_in(user) }
 
       it { should have_title(user.name) }
       it { should have_link('Profile', href: user_path(user)) }
@@ -75,7 +75,11 @@ describe "Authentication" do
             expect(page).to have_title("Edit user")
           end
         end
+      end
 
+      describe "when trying to visit user index" do
+        before { visit users_path }
+        it { should have_title("Sign in") }
       end
 
     end
@@ -83,7 +87,7 @@ describe "Authentication" do
     describe "as wrong user" do
       let(:user) { FactoryBot.create(:user) }
       let(:wrong_user) { FactoryBot.create(:user, email: "wrong@example.com") }
-      before { valid_signin user, no_capybara: true }
+      before { sign_in user, no_capybara: true }
 
       describe "submitting a GET request to the Users#edit action" do
         before { get edit_user_path(wrong_user) }

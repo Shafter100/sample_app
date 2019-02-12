@@ -3,6 +3,24 @@ require 'spec_helper'
 describe "UserPages" do
   subject {page}
 
+  describe "index" do
+    before do
+      sign_in FactoryBot.create(:user)
+      FactoryBot.create(:user, name: "Bob", email: "bob@example.com")
+      FactoryBot.create(:user, name: "Ben", email: "ben@example.com")
+      visit users_path
+    end
+
+    it { should have_title('All users') }
+    it { should have_content('All users') }
+
+    it "should list each user" do
+      User.all.each do |user|
+        expect(page).to have_selector('li', text: user.name)
+      end
+    end
+  end
+
   describe "Signup page" do
     before {visit signup_path}
 
@@ -62,7 +80,7 @@ describe "UserPages" do
   describe "edit" do
     let(:user) { FactoryBot.create(:user) }
     before do
-      valid_signin user
+      sign_in user
       visit edit_user_path(user)
     end
 
