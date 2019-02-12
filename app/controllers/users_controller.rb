@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :signed_in_user, only: [:edit, :update]
+  before_action :correct_user, only: [:edit, :update]
 
   def create
     @user = User.new(user_params)
@@ -21,11 +22,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
       redirect_to @user
@@ -45,9 +44,15 @@ class UsersController < ApplicationController
 
     def signed_in_user
       unless signed_in?
+        store_location
         flash[:warning] = "Please sign in."
         redirect_to signin_url
       end
       #redirect_to signin_url, notice: "Please sign in." unless signed_in?  # notice is not styled!!!!!!!!!!!!!!
+    end
+
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_url) unless current_user?(@user)
     end
 end
