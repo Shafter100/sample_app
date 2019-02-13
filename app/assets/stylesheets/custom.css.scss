@@ -1,3 +1,4 @@
+@import "bootstrap-sprockets";
 @import "bootstrap";
 
 @mixin box_sizing {
@@ -138,18 +139,34 @@ input {
   height: auto !important;
 }
 
+
 #error_explanation {
-  color: #f00;
+  color: red;
   ul {
-    list-style: none;
-    margin: 0 0 18px 0;
+    color: red;
+    margin: 0 0 30px 0;
   }
 }
 
 .field_with_errors {
-  @extend .control-group;
-  @extend .error;
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
 }
+// old version:
+// #error_explanation {
+//   color: #f00;
+//   ul {
+//     list-style: none;
+//     margin: 0 0 18px 0;
+//   }
+// }
+//
+// .field_with_errors {
+//   @extend .control-group;
+//   @extend .error;
+// }
 
 /* footer */
 
@@ -177,6 +194,25 @@ footer {
     li {
       float: left;
       margin-left: 10px;
+    }
+  }
+}
+
+.gravatar_change {
+  margin-top: 15px;
+}
+
+/* Users index */
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-top: 1px solid $gray-lighter;
+    &:last-child {
+      border-bottom: 1px solid $gray-lighter;
     }
   }
 }

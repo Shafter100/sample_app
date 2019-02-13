@@ -9,6 +9,9 @@ gem 'rails', '4.2.8'
 gem 'bootstrap-sass', '3.2.0.0'
 gem 'sprockets', '2.12.5'
 gem 'bcrypt', '3.1.6'
+gem 'faker'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 gem 'pg', '0.15.1'
 group :development, :test do
