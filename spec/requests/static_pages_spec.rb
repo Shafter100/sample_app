@@ -1,39 +1,8 @@
 require 'spec_helper'
 
-# def page_content(name)
-#   case name
-#   when "Home"
-#     "Sample App"
-#   when "Help"
-#     "Help"
-#   when "About"
-#     "About Us"
-#   when "Contact"
-#     "Contacts"
-#   end
-# end
-#
-# def page_test(name)
-#   describe "#{name} page" do
-#
-#     it "should have the content #{page_content(name)}" do
-#       visit "/static_pages/#{name.downcase}"
-#       expect(page).to have_content(page_content(name))
-#     end
-#
-#     it "should have the right title" do
-#       visit "/static_pages/#{name.downcase}"
-#       expect(page).to have_title("#{base_title} | #{name}")
-#     end
-#   end
-# end
-
 describe "StaticPages" do
   subject {page}
-
-  # pages = ["Home", "Help", "About", "Contact"]
-  # pages.each { |name| page_test(name) }
-
+  
   shared_examples_for "all static pages" do
     it { should have_selector('h1', text: heading) }
     it { should have_title(full_title(page_title)) }

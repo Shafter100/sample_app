@@ -132,7 +132,7 @@ describe "UserPages" do
         fill_in "Name",             with: new_name
         fill_in "Email",            with: new_email
         fill_in "Password",         with: user.password
-        fill_in "Confirm Password", with: user.password
+        fill_in "Confirmation", with: user.password
         click_button "Save changes"
       end
 
@@ -147,6 +147,18 @@ describe "UserPages" do
       before { click_button "Save changes" }
 
       it { should have_content('error') }
+    end
+
+    describe "forbidden attributes" do
+      let(:params) do
+        { user: { admin: true, password: user.password,
+                  password_confirmation: user.password } }
+      end
+      before do
+        sign_in user, no_capybara: true
+        patch user_path(user), params
+      end
+      specify { expect(user.reload).not_to be_admin }
     end
   end
 
