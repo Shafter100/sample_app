@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
+  before_action :already_signed_in, only: [:new, :create]
 
   def create
     @user = User.new(user_params)
@@ -58,6 +59,12 @@ class UsersController < ApplicationController
         store_location
         flash[:warning] = "Please sign in."
         redirect_to signin_url
+      end
+    end
+
+    def already_signed_in
+      if signed_in?
+        redirect_to root_url
       end
     end
 
