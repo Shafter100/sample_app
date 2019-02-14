@@ -39,6 +39,7 @@ describe "UserPages" do
 
       describe "as an admin user" do
         let(:admin) { FactoryBot.create(:admin) }
+        let(:user) { FactoryBot.create(:user) }
         before do
           sign_in admin
           visit users_path
