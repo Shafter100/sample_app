@@ -62,27 +62,32 @@ describe "StaticPages" do
   end
 
   describe "for signed-in users" do
-      let(:user) { FactoryBot.create(:user) }
-      before do
-        FactoryBot.create(:micropost, user: user, content: "Lorem ipsum")
-        FactoryBot.create(:micropost, user: user, content: "Dolor sit amet")
-        sign_in user
-        visit root_path
-      end
+    let(:user) { FactoryBot.create(:user) }
+    before do
+      FactoryBot.create(:micropost, user: user, content: "Lorem ipsum")
+      FactoryBot.create(:micropost, user: user, content: "Dolor sit amet")
+      sign_in user
+      visit root_path
+    end
 
-      it "should render the user's feed" do
-        user.feed.each do |item|
-          expect(page).to have_selector("li##{item.id}", text: item.content)
-        end
+    it "should have micropost counts on the sidebar" do
+      expect(page).to have_content("#{user.microposts.count} " + "micropost".pluralize(user.microposts.count))
+    end
+
+    it "should render the user's feed" do
+      user.feed.each do |item|
+        expect(page).to have_selector("li##{item.id}", text: item.content)
       end
     end
 
-  # default tests
-  # describe "GET /static_pages" do
-  #   it "works! (now write some real specs)" do
-  #     # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-  #     get static_pages_index_path
-  #     response.status.should be(200)
-  #   end
-  # end
+    describe "microposts pagination" do
+      before(:all) { 31.times { FactoryBot.create(:micropost, user: user, content: "Lorem ipsum") } }
+      after(:all) { Micropost.delete_all }
+
+      it { should have_selector('div.pagination') }
+
+      it { should_not have_selector("li##{Micropost.last.id}") }
+    end
+  end
+
 end
